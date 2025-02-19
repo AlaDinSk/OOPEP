@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Добавление записи держателя
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/table.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/font-awesome.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Загрузить из файла</h1>
+
+<form id="uploadFileForm" enctype="multipart/form-data">
+    <input type="file" name="file" id="fileInput">
+    <button type="button" class="btn btn-outline-primary me-2" onclick="uploadFile()">Загрузить</button>
+</form>
+
+<form method="post" class="form-control" id="uploadForm" enctype="multipart/form-data">
+    <input type="text" name="item_journal" placeholder="Пункт по журналу" class="form-control"><br>
+    <input type="text" name="conditional_name" id="conditional_name" placeholder="Условное наименование"  class="form-control" ><br>
+    <input type="text" name="valid_name" placeholder="Действительное наименование" class="form-control" ><br>
+    <input type="text" name="subordination" placeholder="Подчиненность" class="form-control" ><br>
+    <input type="text" name="out_number" placeholder="Исходящий номер" class="form-control" ><br>
+    <input type="text" name="in_number" placeholder="Входящий номер" class="form-control" ><br>
+    <input type="text" name="oid" placeholder="OID" class="form-control" ><br>
+    <input type="text" name="name" id="name" placeholder="Фамилия Имя Отчество" class="form-control" ><br>
+    <input type="text" name="status" placeholder="Статус" class="form-control" ><br>
+    <input type="text" name="electronic_request" placeholder="Поступление электронного запроса" class="form-control" ><br>
+    <input type="text" name="release" placeholder="Выпуск СКПЭП" class="form-control" ><br>
+    <input type="text" name="number_notification" placeholder="Номер уведомления" class="form-control" ><br>
+    <input type="text" name="date_notification" placeholder="Дата уведомления" class="form-control" ><br>
+    <input type="text" name="return_certificate" placeholder="Возврат СКПЭП" class="form-control" ><br>
+    <input type="text" name="filing_case" placeholder="Подшивка в дело" class="form-control" ><br>
+    <input type="text" name="note" placeholder="Примечание" class="form-control" ><br>
+    <button class="btn btn-success" type="submit">Добавить</button>
+</form>
+
+<script>
+    function uploadFile() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert("Выберите файл!");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        // Отправляем файл на сервер
+        fetch('/post/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Заполняем поля name и conditional_name
+            if (data.name) {
+                document.getElementById('name').value = data.name;
+            }
+            if (data.conditional_name) {
+                document.getElementById('conditional_name').value = data.conditional_name;
+            }
+        })
+        .catch(error => {
+            console.error("Ошибка:", error);
+        });
+    }
+</script>
+{% endblock %}

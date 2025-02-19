@@ -1,0 +1,98 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Таблица держателей
+{% endblock %}
+
+{% block style %}
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .table-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Выравнивание по верхнему краю */
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        position: sticky;
+        top: 0; /* Фиксация заголовка таблицы при прокрутке */
+        z-index: 10;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">Пункт по журналу</th>
+            <th scope="col">Условное наименование</th>
+            <th scope="col">Действительное наименование</th>
+            <th scope="col">Подчиненность</th>
+            <th scope="col">Исх. номер</th>
+            <th scope="col">Вх. номер</th>
+            <th scope="col">OID</th>
+            <th scope="col">Фамилия Имя Отчество</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Поступление электронного запроса</th>
+            <th scope="col">Выпуск СКПЭП</th>
+            <th scope="col">Номер уведомления</th>
+            <th scope="col">Дата уведомления</th>
+            <th scope="col">Возврат СКПЭП</th>
+            <th scope="col">Дело</th>
+            <th scope="col">Примечание</th>
+            <th scope="col">Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in holder_db %}
+        <tr>
+            <td>{{ user.item_journal }}</td>
+            <td>{{ user.conditional_name }}</td>
+            <td>{{ user.valid_name }}</td>
+            <td>{{ user.subordination }}</td>
+            <td>{{ user.out_number }}</td>
+            <td>{{ user.in_number }}</td>
+            <td>{{ user.oid }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.status }}</td>
+            <td>{{ user.electronic_request }}</td>
+            <td>{{ user.release }}</td>
+            <td>{{ user.number_notification }}</td>
+            <td>{{ user.date_notification }}</td>
+            <td>{{ user.return_certificate }}</td>
+            <td>{{ user.filing_case }}</td>
+            <td>{{ user.note }}</td>
+            <td>
+                <a href="{{ url_for('post.holder_update', item_journal=user.id) }}" class="btn btn-sm btn-secondary">Ред.</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

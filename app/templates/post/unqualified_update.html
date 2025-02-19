@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Редактирование записи неквала № {{ unqualified.item_journal }}
+{% endblock %}
+
+{% block content %}
+
+<form method="post" class="form-control">
+    <input value="{{ unqualified.item_journal }}"  type="text" name="item_journal" placeholder="Пункт по журналу" class="form-control"><br>
+    <input value="{{ unqualified.conditional_name }}" type="text" name="conditional_name" placeholder="Условное наименование" class="form-control" ><br>
+    <input value="{{ unqualified.valid_name }}" type="text" name="valid_name" placeholder="Действительное наименование" class="form-control" ><br>
+    <input value="{{ unqualified.subordination }}" type="text" name="subordination" placeholder="Подчиненность" class="form-control" ><br>
+    <input value="{{ unqualified.out_number }}" type="text" name="out_number" placeholder="Исходящий номер" class="form-control" ><br>
+    <input value="{{ unqualified.in_number }}" type="text" name="in_number" placeholder="Входящий номер" class="form-control" ><br>
+    <input value="{{ unqualified.oid }}" type="text" name="oid" placeholder="OID" class="form-control" ><br>
+    <input value="{{ unqualified.name }}" type="text" name="name" placeholder="Фамилия Имя Отчество" class="form-control" ><br>
+    <input value="{{ unqualified.type_certificate }}" type="text" name="type_certificate" placeholder="Тип сертификата" class="form-control" ><br>
+    <input value="{{ unqualified.status }}" type="text" name="status" placeholder="Статус" class="form-control" ><br>
+    <input value="{{ unqualified.electronic_request }}" type="text" name="electronic_request" placeholder="Поступление электронного запроса" class="form-control" ><br>
+    <input value="{{ unqualified.release }}" type="text" name="release" placeholder="Выпуск СКПЭП" class="form-control" ><br>
+    <input value="{{ unqualified.number_notification }}" type="text" name="number_notification" placeholder="Номер уведомления" class="form-control" ><br>
+    <input value="{{ unqualified.date_notification }}" type="text" name="date_notification" placeholder="Дата уведомления" class="form-control" ><br>
+    <input value="{{ unqualified.return_certificate }}" type="text" name="return_certificate" placeholder="Возврат СКПЭП" class="form-control" ><br>
+    <input value="{{ unqualified.filing_case }}" type="text" name="filing_case" placeholder="Подшивка в дело" class="form-control" ><br>
+    <input value="{{ unqualified.note }}" type="text" name="note" placeholder="Примечание" class="form-control" ><br>
+    <input value="Обновить" type="submit" class="btn btn-success">
+</form>
+{% endblock %}

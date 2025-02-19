@@ -1,0 +1,19 @@
+<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    <a href="{{ url_for('post.all') }}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+      <img class="header__img" src="{{ url_for('static', filename='img/88.jpg')}}" alt="student">
+    </a>
+
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="{{ url_for('post.all') }}" class="nav-link px-2 text-secondary"><ya-tr-span data-index="19-0" data-translated="false" data-source-lang="en" data-target-lang="ru" data-value="Home" data-translation="Главная" data-ch="1" data-type="trSpan" style="visibility: inherit !important;">Главная</ya-tr-span></a></li>
+    </ul>
+    <div class="text-end">
+        {% if current_user.is_authenticated %}
+        <span>Пользователь: {{ current_user.login }}</span>
+             <a href="{{ url_for('user.logout') }}" class="btn btn-outline-dark me-2">Выйти</a>
+        {% else %}
+            <a href="{{ url_for('user.login') }}" class="btn btn-outline-dark me-2">Вход</a>
+            <a href="{{ url_for('user.register') }}" class="btn btn-warning">Зарегистрироваться</a>
+        {% endif %}
+
+    </div>
+  </div>

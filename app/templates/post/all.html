@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}База данных регистрации СКП ЭП{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/table.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/font-awesome.min.css') }}">
+    <style>
+        /* Стили для кнопок */
+
+         .button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center; /* Распределяем кнопки по центру */
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="content button-container">
+        <a class="btn btn-outline-dark me-2" type="button" href="{{url_for('post.operators_table')}}">Таблица операторов</a>
+        <a class="btn btn-outline-dark me-2" type="button" href="{{url_for('post.holders_table')}}">Таблица держателей</a>
+        <a class="btn btn-outline-dark me-2" type="button" href="{{url_for('post.unqualified_table')}}">Таблица неквала</a>
+        <a class="btn btn-outline-dark me-2" type="button" href="{{url_for('post.cancellation_table')}}">Таблица аннулирования</a>
+        <a class="btn btn-outline-primary me-2" type="button" href="{{url_for('post.operators_add')}}">Новая запись оператора</a>
+        <a class="btn btn-outline-primary me-2" type="button" href="{{url_for('post.holders_add')}}">Новая запись держателя</a>
+        <a class="btn btn-outline-primary me-2" type="button" href="{{url_for('post.unqualified_add')}}">Новая запись неквала</a>
+        <a class="btn btn-outline-primary me-2" type="button" href="{{url_for('post.cancellation_add')}}">Новая запись аннулирования</a>
+    </div>
+</body>
+{% endblock %}
